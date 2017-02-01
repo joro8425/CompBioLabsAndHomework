@@ -1,0 +1,5 @@
+$ touch [filename] - Edits a file’s “last modified” entry. If no file exists with the inputed file name, a blank file will be created to match the entry within the current working directory. 
+$ mkdir [directory name] - (make directory) Creates a new, empty directory at within the current working directory.
+$ cd - (change directory) Changes the working directory. May only be done along a directory path.
+$ ls - (list) Lists all files and directories within the current working directory.
+$ man [command] - (manual) Lists all functions and uses of the input command. 
