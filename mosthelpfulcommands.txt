@@ -3,3 +3,4 @@ $ mkdir [directory name] - (make directory) Creates a new, empty directory at wi
 $ cd - (change directory) Changes the working directory. May only be done along a directory path.
 $ ls - (list) Lists all files and directories within the current working directory.
 $ man [command] - (manual) Lists all functions and uses of the input command. 
+$ git Gui - Brings up a git graphical user interface that is mouse driven
