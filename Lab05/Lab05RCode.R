@@ -41,6 +41,7 @@ lowerlimit <- 50    #setting boundry variables for the subset
 upperlimit <- 100
 SubsetIndices <- which( Vector1 > lowerlimit & Vector1 < upperlimit)     #setting boundry indices
 Subset1 <- Vector1[SubsetIndices]     #creating the subset
+print(Subset1)
 
 #Question 3
 setwd("/Users/rekna/Documents/CompBio/CompBioGithub/CompBioLabsAndHomework/Lab04")
