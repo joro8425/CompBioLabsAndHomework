@@ -14,13 +14,13 @@ Vector1 <- read.csv("Vector1.csv")     #assigning the imported vector to a varia
 
 #Replacing negative values with NAs
 Vector1 <- as.vector(Vector1$x)     #Making the data set a readable vector
-Vector1[995]
+Vector1[995]     #checking a negative value
 for ( i in seq(1:length(Vector1))) {
   if ( (Vector1[i] < 0 )) {
     Vector1[i] <- NA    #replacing the ith element of the vector
   }
 }
-Vector1[995]
+Vector1[995]     #checking that the negative is now an NA
 
 #2a, using a for loop to replace na's with zeroes (did on accident, decided to keep it)
 Zero <- 0
@@ -30,7 +30,7 @@ for ( i in seq(1:length(Vector1))) {
     Vector1[i] <- Zero    #replacing the ith element of the vector
   }
 }
-Vector1[995]
+Vector1[995]     #checking that the value is now a zero
 
 #2b, using a which conditional to replace na's with zeroes
 NAvalues <- which( is.na(Vector1) )      #Identifying all na's within the dataset using $which
@@ -70,21 +70,31 @@ totalgenerations <- 1000
 initialprey <- 100      #initial prey abundance
 initialpredator <- 10     #initial predator abundance
 a <- 0.01    #attack rate
-r <- 0.02    #growth rate of prey
+r <- 0.2    #growth rate of prey
 m <- 0.05    #mortaility rate of predators
-k <- 0.01    #conversion constant of prey into predators
+k <- 0.1    #conversion constant of prey into predators
+Zero <- 0
 time <- rep( Zero , totalgenerations )
 n <- initialprey
 p <- initialpredator
-nvalues <- n
-pvalues <- p
 
 #Writing the for loops
 for ( t in seq( 2 , length(time) ) ) {
-  nvalues[t] <- n[t-1] + (r * n[t-1]) - (a * n[t-1] * p[t-1])
-  pvalues[t] <- p[t-1] + (k * a * n[t-1] * p[t-1]) - (m * p[t-1])
-  n <- nvalues
-  p <- pvalues
+  n[t] <- n[t-1] + (r * n[t-1]) - (a * n[t-1] * p[t-1])
+  p[t] <- p[t-1] + (k * a * n[t-1] * p[t-1]) - (m * p[t-1])
+#Removing negative values from the data
+  if ( (n[t] < Zero ) ) {
+    n[t] <- Zero 
+  }
+  if ( (p[t] < Zero)) {
+    p[t] <- Zero
+  }
+
 }
-print(nvalues)
-print(pvalues)
+print(n)
+print(p)
+
+#plotting the data
+plot(n, xlab = "Time", ylab = "Abundance" ) {
+lines(p)
+}
