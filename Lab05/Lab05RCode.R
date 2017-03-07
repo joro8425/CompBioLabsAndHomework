@@ -4,6 +4,8 @@ x <- 7     #assigning random numerical value to variable x for the
            #purposes of the conditional to follow
 if ( x > 5) {
   print("Is pretty big, yo.")
+} else {
+  "Is not that big, man."
 }
 
 #Question 2
@@ -15,7 +17,7 @@ Vector1 <- read.csv("Vector1.csv")     #assigning the imported vector to a varia
 #Replacing negative values with NAs
 Vector1 <- as.vector(Vector1$x)     #Making the data set a readable vector
 Vector1[995]     #checking a negative value
-for ( i in seq(1:length(Vector1))) {
+for ( i in seq(1,length(Vector1))) {
   if ( (Vector1[i] < 0 )) {
     Vector1[i] <- NA    #replacing the ith element of the vector
   }
@@ -25,7 +27,7 @@ Vector1[995]     #checking that the negative is now an NA
 #2a, using a for loop to replace na's with zeroes (did on accident, decided to keep it)
 Zero <- 0
 Vector1 <- as.vector(Vector1$x)     #Making the data set a readable vector
-for ( i in seq(1:length(Vector1))) {
+for ( i in seq(1,length(Vector1))) {
   if ( is.na(Vector1[i] )) {
     Vector1[i] <- Zero    #replacing the ith element of the vector
   }
@@ -96,6 +98,7 @@ print(n)
 print(p)
 
 #plotting the data
-plot(n, xlab = "Time", ylab = "Abundance" ) {
+plot(n, xlab = "Time", ylab = "Abundance" )
 lines(p)
-}
+
+
