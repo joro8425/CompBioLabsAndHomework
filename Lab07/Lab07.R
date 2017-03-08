@@ -1,14 +1,24 @@
 #Lab07
 #Problem #1, making a fibonacci function
 FibReturn <- function( n = 3 ) {
+  if( n < 0)
+    return( "bro dats a negative.")     #Bonus 2, returning a message if negative values
+                                          #are inputted
   Fibonacci <- rep( 1 , n )
+  if( n < 3) {      #Bonus 1, returning numbers of n below 3
+    for( d in 0:n)
+      Fibonacci[d] <- 1
+    return(Fibonacci)
+  }
   for ( f in seq( 3 , length(Fibonacci)) ) {
     Fibonacci[f] <- Fibonacci[f-1] + Fibonacci[f-2]
   }
-return(Fibonacci)
+  return(Fibonacci)
 }
-#Edit for bonus 1
-#Edit for bonus 2
+
+FibReturn(-1)
+FibReturn(2)
+FibReturn(10)
 
 
 #Problem #2, writing a function for a discrete-time logistic growth model
@@ -25,8 +35,6 @@ LogGrowthFunction(Gens = 200)
 
 
 #Problem #3, converting matrices
-#matrix one has position based data (i,j relationship) while matrix two lists all
-  #relationships that occured in matrix 1 (row i and column j interacted = value 1)
 
 SimpleMatrix <- matrix( c(0,1,1,1,0,0,1,0,0), ncol = 3, nrow = 3)
 getwd()
