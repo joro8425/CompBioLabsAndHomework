@@ -73,6 +73,7 @@ TransformMatrixPairwise <- function( SqMatrix ) {
       }
     }
   }
+  colnames(PairwiseMatrix) <- c("Row", "Column", "Value")
   return(PairwiseMatrix)
 }
 
