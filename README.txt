@@ -1,1 +1,0 @@
-This Repository will be used to store all class, homework and lab assignments for Computational Biology.
