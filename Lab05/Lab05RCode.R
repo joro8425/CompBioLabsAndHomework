@@ -11,7 +11,7 @@ if ( x > 5) {
 #Question 2
 getwd()
 setwd("/Users/rekna/Documents/CompBio/CompBioGithub/CompBioLabsAndHomework/Lab05")
-read.csv("Vector1.csv")     #Impoting the vector
+read.csv("Vector1.csv")     #Importing the vector
 Vector1 <- read.csv("Vector1.csv")     #assigning the imported vector to a variable
 
 #Replacing negative values with NAs

@@ -38,9 +38,10 @@ LogGrowthFunction(Gens = 200)
 
 
 #Problem #3, converting matrices
+file <- read.csv(file.choose()) #find any file that you want
 getwd()
 setwd("/Users/rekna/Documents/CompBio/CompBioGithub/CompBioLabsAndHomework/Lab07")
-Matrix <- read.csv("LargeAdjacencyMatrix.csv")      #setting up a test matrix
+AdjacencyMatrix <- read.csv("LargeAdjacencyMatrix.csv")      #setting up a test matrix
 
 TransformMatrixPairwise <- function( SqMatrix ) {
   nRows <- nrow(SqMatrix)         #defining all necesary variables and eliminating 'magic' numbers
@@ -77,4 +78,24 @@ TransformMatrixPairwise <- function( SqMatrix ) {
   return(PairwiseMatrix)
 }
 
-TransformMatrixPairwise( SqMatrix = Matrix )    #using test matrix created above as input
+TransformMatrixPairwise( SqMatrix = AdjacencyMatrix )    #using test matrix created above as input
+PairwiseMatrix <- TransformMatrixPairwise( SqMatrix = AdjacencyMatrix )
+
+length(PairwiseMatrix)
+
+
+
+#optional section, reverting pairwise table to adjacency matrix
+TransformMatrixAdjacency <- function( PairMatrix ) {
+  numrowcol <- which.max(PairMatrix)
+  NewAdjacencyMatrix <- matrix( data = zero, ncol = numrowcol, nrow = numrowcol)
+  for(i in seq(1,length(PairMatrix[,1]))) {
+    NewAdjacencyMatrix[PairMatrix[i,1], PairMatrix[i,2]] <- 1
+  }
+  return(NewAdjacencyMatrix)
+}
+
+TransformMatrixAdjacency( PairMatrix = PairwiseMatrix )
+Q <- TransformMatrixAdjacency( PairMatrix = PairwiseMatrix )
+
+sum(Q != 0) 
