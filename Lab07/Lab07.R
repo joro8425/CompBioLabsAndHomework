@@ -87,6 +87,7 @@ length(PairwiseMatrix)
 
 #optional section, reverting pairwise table to adjacency matrix
 TransformMatrixAdjacency <- function( PairMatrix ) {
+  zero <- 0
   numrowcol <- which.max(PairMatrix)
   NewAdjacencyMatrix <- matrix( data = zero, ncol = numrowcol, nrow = numrowcol)
   for(i in seq(1,length(PairMatrix[,1]))) {

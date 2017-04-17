@@ -97,7 +97,7 @@ percentchangevalues <- lab4matrix
 for ( q in 2:nCol ) {     #using a for loop to divide every entry by its previous entry
                             #in order to determine % change betweeen points
   for ( m in 2:nRow ) {
-    percentchangevalues[ m , q] <- ( percentchangevalues[ m , q] / percentchangevalues[ m - 1 , q] )
+    percentchangevalues[ m , q ] <- ( percentchangevalues[ m , q] / percentchangevalues[ m - 1 , q] )
   }
 }
 print(percentchangevalues)

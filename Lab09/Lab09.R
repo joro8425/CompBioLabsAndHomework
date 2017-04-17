@@ -58,5 +58,5 @@ endtotaldiff <- abs(daystohours) + abs(hourdiff)
   #Adding all final total differences, in the consistent form of hours, together.
 return(endtotaldiff)
 }
-DateDiffFunction(dateone = cameraDataFile[4, 6], datetwo = cameraDataFile[1300,6])
+DateDiffFunction(dateone = cameraDataFile[1300,6] , datetwo =  cameraDataFile[4, 6])
   #Test
