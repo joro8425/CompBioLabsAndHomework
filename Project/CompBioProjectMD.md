@@ -1,4 +1,4 @@
-## **Data Analysis:** *Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs *
+## **Data Analysis:** *Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs*
   
 
 #### Goals of the Study  
