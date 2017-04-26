@@ -1,11 +1,11 @@
-#Meta-Data of LogGrowthFunction( )
+# Meta-Data of LogGrowthFunction( )
 
-###Description
+### Description
 This file contains a function meant to calculate the logistic growth of a population over discrete time intervals, given all outside factors are excluded.
 
-####Variables
-All variables are changeable within the function with the variable designation followed by = followed by the desired number. 
-ex. 
+#### Variables
+All variables are changeable within the function with the variable designation followed by = followed by the desired number.  
+ex.  
 `LogGrowthFunction( n = 10, k = 20, r = .30, Gens = 40)`
 
  * n = Population abundance at given point in time. Default = 10.
