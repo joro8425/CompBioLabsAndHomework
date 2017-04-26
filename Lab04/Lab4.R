@@ -24,15 +24,15 @@ for ( y in seq(1,7)) {
   initialpopulation <- populationdecline
 }
 
-#lab step 4, creating a carrying capacity equation vector
 k <- 10000    #carrying capacity of the population
 r <- 0.8    #population rate of increase
 n <- 2500     #original population size
-gens <- 12
+gens <- 12    ##number of generations
+CCvector <- rep(1:12)    #blank vector for storing data values
 for ( t in seq( 2, gens ) ) {
-  n[t] <- n[t-1] + ( r * n[t-1] * ( k - n[t-1]) / k )
+  CCvector[t-1] <- n[t] <- n[t-1] + ( r * n[t-1] * ( k - n[t-1]) / k )
 }
-print(n)      #printing vector of population sizes at postition [t]
+print(CCvector)         #printing vector of population sizes at postition [t]
 
 #LAB PART 2
 #Lab step 1a, creating a vector of 0s
@@ -70,11 +70,12 @@ print(Fibonacci)
 k <- 10000    #carrying capacity of the population
 r <- 0.8    #population rate of increase
 n <- 2500     #original population size
-gens <- 12
+gens <- 12    #number of generations
+CCvector <- rep(1:12)    #blank vector for storing data values
 for ( t in seq( 2, gens ) ) {
-  n[t] <- n[t-1] + ( r * n[t-1] * ( k - n[t-1]) / k )
+  CCvector[t-1] <- n[t] <- n[t-1] + ( r * n[t-1] * ( k - n[t-1]) / k )
 }
-print(n)      #printing vector of population sizes at postition [t]
+print(CCvector)      #printing vector of population sizes at postition [t]
 
 #making the plot
 time <- seq(1,12)     #variable to define length of x axis
@@ -91,13 +92,15 @@ lab4matrix <- read.csv(file = "CO2_data_cut_paste.csv")
 
 nCol <- ncol(lab4matrix)    #defining the parameters of the matrix into variables
 nRow <- nrow(lab4matrix)
-percentchangevalues <- lab4matrix
-
+percentchangevalues <- matrix( nrow = nRow , ncol = nCol ) #creating new matrix object for data
+    #storage
+colnames(percentchangevalues) <- colnames(lab4matrix)
+rownames(percentchangevalues) <- rownames(lab4matrix)
 #lab step 4b, calculating percent change in the matrix
 for ( q in 2:nCol ) {     #using a for loop to divide every entry by its previous entry
                             #in order to determine % change betweeen points
   for ( m in 2:nRow ) {
-    percentchangevalues[ m , q ] <- ( percentchangevalues[ m , q] / percentchangevalues[ m - 1 , q] )
+    percentchangevalues[ m , q ] <- ( lab4matrix[ m , q] / lab4matrix[ m - 1 , q] )
   }
 }
 print(percentchangevalues)
