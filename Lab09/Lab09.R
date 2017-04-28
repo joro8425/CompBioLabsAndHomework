@@ -3,6 +3,7 @@ cameraDataFile <- read.csv(file.choose("Cusack_et_al_random_versus_trail_
     #Retrieving file and assigning it to a variable.
 
 DateDiffFunction <- function( dateone, datetwo ) {    #Creating function name and arguments.
+  
 datereformatone <- matrix( ncol = 3, nrow = 1 )    #Preallocating matrix.
   datereformatone[ 1, 1 ] <- as.numeric(substr( x = dateone, start = 1, stop = 2))
     datereformatone[ 1, 2 ] <- as.numeric(substr( x = dateone, start = 4, stop = 5))
@@ -59,4 +60,23 @@ endtotaldiff <- abs(daystohours) + abs(hourdiff)
 return(endtotaldiff)
 }
 DateDiffFunction(dateone = cameraDataFile[1300,6] , datetwo =  cameraDataFile[4, 6])
-  #Test
+
+
+
+
+
+#Problem 5
+TimesAtPosition <- function( Data, Placement, Season, Station ) {
+nRow <- nrow(Data)
+  for ( r in seq( 1 , nRow ) ) {
+    if ( (Data[ r , 2 ] == Placement) && (Data[ r , 3 ] == Season) && (Data[ r , 4 ] == Station) )
+      q[r] <- as.character(Data[ r , 6 ])
+      datetimevector <- as.vector(q[!is.na(q)])
+  }
+for ( l in 1:length(datetimevector)){
+  newvec <- DateDiffFunction( dateone = datetimevector[ l + 1 ], datetwo = datetimevector[ l ] )
+}
+print(newvec)
+}
+TimesAtPosition( Data = cameraDataFile, Placement = "Random", Season = "D", Station = 12)
+warnings()
