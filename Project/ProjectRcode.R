@@ -1,28 +1,30 @@
-#Final Project
-
-#WRITE MARKDOWN FILE EXPLAINING PROCESS AND FINAL RESULTS
-#ANNOTATE THE SHIT OUT OF THIS BITCH
-
-
-#setting proper working directory
+#Setting proper working directory
 getwd()
 setwd("/Users/rekna/Documents/CompBio/CompBioGithub/CompBioLabsAndHomework/Project")
+
+#Installing and loading additional R packages
 install.packages("psych",dependencies=TRUE)
 library("psych")
 
-#setting all data sets to variables
+#Setting the data to an object
 projectabundancedata <- read.csv(file.choose("Adamczyk_zooplankton_abundance_PLOSdata.csv"))
 
+#Determining the number of rows within the project data set that indicate samples 
+  #were taken from the specified lake
 P <- which( projectabundancedata[ , 1 ] == "Poway")
 Mi <- which( projectabundancedata[ , 1 ] == "Miramar")
 Mu <- which( projectabundancedata[ , 1 ] == "Murray")
+
+#Creating mblank matrices for each lake, so as to later sperate the data, and creating the 
+  #'wholeabundancedata' matrix base (see MD doc)
 abundancerows <- nrow(projectabundancedata)
 wholeabundancedata <- as.matrix(projectabundancedata[ 1:abundancerows , 6:18])
 powaydata <- as.matrix(projectabundancedata[ 1:length(P) , 6:18])
 miramardata <- as.matrix(projectabundancedata[ 1:length(Mi) , 6:18])
 murraydata <- as.matrix(projectabundancedata[ 1:length(Mu) , 6:18])
 
-
+#Setting the abundance data to the total sample numbers by 
+  #multiplying each species count by the "fraction of sample counted" collumn
 for( r in 1:abundancerows) { 
   wholeabundancedata[ r , 1 ] <- projectabundancedata[ r , 4 ] * projectabundancedata[ r , 6 ]
   wholeabundancedata[ r , 2 ] <- projectabundancedata[ r , 4 ] * projectabundancedata[ r , 7 ]
@@ -38,9 +40,9 @@ for( r in 1:abundancerows) {
   wholeabundancedata[ r , 12 ] <- projectabundancedata[ r , 4 ] * projectabundancedata[ r , 17 ]
   wholeabundancedata[ r , 13 ] <- projectabundancedata[ r , 4 ] * projectabundancedata[ r , 18 ]
 }
-#setting the abundance data to the total sample numbers by 
-#multiplying each species count by the "fraction of sample counted" collumn
 
+#Seperating all 'Poway' lake data rows from the project data and putting them into their 
+  #own  matirx
 myiterator <- 1
 for( a in 1:abundancerows) {
   if( projectabundancedata[ a , 1 ] == "Poway") {
@@ -49,6 +51,8 @@ for( a in 1:abundancerows) {
   }
 }
 
+#Seperating all 'Miramar' lake data rows from the project data and putting them into their 
+#own  matirx
 myiterator <- 1
 for( b in 1:abundancerows) {
   if( projectabundancedata[ b , 1 ] == "Miramar") {
@@ -57,6 +61,8 @@ for( b in 1:abundancerows) {
   }
 }
 
+#Seperating all 'Murray' lake data rows from the project data and putting them into their 
+#own  matirx
 myiterator <- 1
 for( c in 1:abundancerows) {
   if( projectabundancedata[ c , 1 ] == "Murray") {
@@ -65,25 +71,32 @@ for( c in 1:abundancerows) {
   }
 }
 
-# function for computing and printing all bacteria with competitive relationship
+#Function for computing and printing all bacteria with competitive relationship
 competitionfinder <- function( lake ) {
   
-  rvalues <<- cor(lake)
-  alpha <- .05
-  mybool <<- 0
+  #Setting all variables to be used in the function
+  rvalues <<- cor(lake) #Correlation test run between all species within given lake matrix. 
+    #Creates new matrix with species relationships displayed as r-values.
+  alpha <- .05    #Alpha value used for later comparison with p-values
+  mybool <- 0
   nRow <- nrow(rvalues)
   nCol <- ncol(rvalues)
   negativervalues <<- matrix(nrow = nRow, ncol = nCol)
-  rownames( negativervalues ) <<- rownames( rvalues )
-  colnames( negativervalues) <<- colnames( rvalues )
+  rownames( negativervalues ) <<- rownames( rvalues ) 
+  colnames( negativervalues) <<- colnames( rvalues ) #Setting 'negativervalues' matrix columns
+    #and rows to species names
   pvalues <<- matrix(nrow = nRow, ncol = nCol)
   significantvalues <<- matrix(nrow = nRow, ncol = nCol) #must assign column values, 
   
   
   
-  corrtest <- corr.test(lake)
-  pvalues <<- round(corrtest$p, 8)
+  corrtest <- corr.test(lake)   #corr.test is run (as defined in the MD doc) on the lake data 
+    #to produce multiple matrices of statistical correlation data
+  pvalues <<- round(corrtest$p, 8)  #A matrix is created by extracting the p-value matrix from
+    #corrtest (object name of corr.test run on lake data)
 
+  #Creating a matrix of only the inverse relationships (negative r-values) and saving 
+    #it to the global environment
   for( r in 1:nRow) {
     for( c in 1:nCol) {
       if( rvalues[ r , c ] < 0 ) {
@@ -92,6 +105,8 @@ competitionfinder <- function( lake ) {
     }
   }
 
+  #Creating a matrix of only the p-values less than or equal to alpha (those that are 
+    #statistically significant) and saving it to the global environment
   for( l in 1:nRow) {
     for( m in 1:nCol) {
       if( pvalues[ l , m ] <= alpha ){
@@ -101,8 +116,12 @@ competitionfinder <- function( lake ) {
   }
   
   rownames( significantvalues ) <<- rownames( rvalues )
-  colnames( significantvalues) <<- colnames( rvalues )
+  colnames( significantvalues) <<- colnames( rvalues )  #Setting 'significantvalues' matrix columns
+  #and rows to species names
   
+  #For loops check both 'negativervalues' and 'significantvalues' matrices to determine if any 
+    #inverse relationships match with significant p-values, which would suggest competition, and 
+    #print any such matched values
   for( q in 1:nRow){
     for( t in 1:nCol){ 
       if((!is.na(significantvalues[ q , t ])) 
@@ -116,7 +135,11 @@ competitionfinder <- function( lake ) {
   }
   
   if( mybool == 0)
-  { print("No Competition")}
+  { print("No Competition")}  #If no matches are found then no inverse relationships are 
+    #statistically significant, thus 'No Competition' returned
   }
-competitionfinder( lake = miramardata)
+competitionfinder( lake = wholeabundancedata) #Function being run on all populations of plankton,
+  #not lake specific
+
+
 
