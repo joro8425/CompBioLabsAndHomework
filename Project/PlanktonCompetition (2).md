@@ -6,7 +6,8 @@ By John Rosol
 This analysis is being done with the purpose of discovering if there is a competitive relationship between any species of plankton in freshwater lake ecosystems. Such information can be useful when considering the introduction or removal of bacteria or other, associated species to and from the ecosystems they inhabit.  
   
 **ex.**  
-This plot shows the relationship between *Daphnia Pulex* and *Nauplii* in Lake Poway. The relationship between the two species appears to be clustered, indicating they have little affect on each other, but there are several data points with a high abundance of *Daphnia* and a respectively low abundance of *Nauplii*, suggesting competition. This analysis will determine if the relationship between these two species, and all others involved in the study, have a competitive relationship, as possibly indicated by the *Daphnia* data points, or if the relationship is neutral, as possibly indicated by the cluster. 
+This plot shows the relationship between *Daphnia Pulex* and *Nauplii* in Lake Poway. The relationship between the two species appears to be clustered, indicating they have little affect on each other, but there are several data points with a high abundance of *Daphnia* and a respectively low abundance of *Nauplii*, suggesting competition. This analysis will determine if the relationship between these two species, and all others involved in the study, have a competitive relationship, as possibly indicated by the *Daphnia* data points, or if the relationship is neutral, as possibly indicated by the cluster.  
+
 ![poway](https://raw.githubusercontent.com/joro8425/CompBioLabsAndHomework/master/Project/Poway.png)  
 
 ##### Hypothesis:
